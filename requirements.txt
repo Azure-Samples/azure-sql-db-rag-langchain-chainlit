@@ -1,0 +1,6 @@
+chainlit
+langchain
+langchain_openai
+python-dotenv
+pyodbc
+azure-identity
