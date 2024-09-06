@@ -1,5 +1,6 @@
 import os
 from dotenv import load_dotenv
+import logging
 
 from utilities import get_similar_sessions
 
@@ -12,6 +13,8 @@ from langchain_core.runnables import RunnableLambda
 from langchain_core.runnables import RunnablePassthrough
 
 load_dotenv()
+
+logging.basicConfig(level=logging.INFO)
 
 llm = AzureChatOpenAI(
     azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
@@ -46,6 +49,16 @@ retriever = RunnableLambda(get_similar_sessions).bind()
 
 rag_chain = {"sessions": retriever, "question": RunnablePassthrough()} | prompt | llm
 
-response = rag_chain.invoke("is there any session on security?")
+# result = retriever.invoke("is there any sesison on SQL and AI?")
+# print(result)    
 
-print(response.content)
+#response = rag_chain.invoke("is there any sesison on SQL and AI?")
+#print(response.content)
+
+print()
+
+for chunk in rag_chain.stream("how do I learn how to bake bread"):
+    print(chunk.content,end="", flush=True)
+
+print()
+

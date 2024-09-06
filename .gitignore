@@ -401,3 +401,4 @@ FodyWeavers.xsd
 .env
 .venv/
 .chainlit/
+_lib/
