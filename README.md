@@ -10,9 +10,9 @@ Sample RAG pattern using Azure SQL DB, Langchain and Chainlit as demonstrated in
 
 The solution works locally and in Azure. The solution is composed of three main Azure components:
 
-- Azure SQL Database: The database that stores the data.
-- Azure Open AI: The language model that generates the text and the embeddings.
-- Azure Functions: The serverless function to automate the process of generating the embeddings (this is optional for this sample)
+- [Azure SQL Database](https://learn.microsoft.com/en-us/azure/azure-sql/database/sql-database-paas-overview?view=azuresql): The database that stores the data.
+- [Azure Open AI](https://learn.microsoft.com/azure/ai-services/openai/): The language model that generates the text and the embeddings.
+- [Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots=programming-language-csharp): The serverless function to automate the process of generating the embeddings (this is optional for this sample)
 
 
 ### Azure Open AI
@@ -24,6 +24,9 @@ Make sure to have two models deployed, one for generating embeddings (*text-embe
 
 
 ### Database
+
+> [!NOTE]  
+> Vector Functions are in Early Adopter Preview. Get access to the preview via https://aka.ms/azuresql-vector-eap-announcement
 
 To deploy the database, you can either the provided .NET 8 Core console application or do it manually.
 
