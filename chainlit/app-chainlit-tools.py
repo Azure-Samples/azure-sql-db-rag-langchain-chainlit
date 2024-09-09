@@ -55,6 +55,7 @@ async def on_message(message: cl.Message):
     runnable = cl.user_session.get("runnable")  # type: Runnable
 
     # Use a chainlit tool to get similar sessions
+    # as another option to langchain integration
     similar_sessions = await GetSimilarSessions(message.content);
 
     msg = cl.Message(content="")
