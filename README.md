@@ -73,6 +73,11 @@ Once the application is running, you'll be able to ask question about your data 
 Is there any session on Retrieval Augmented Generation?
 ```
 
+You'll see that Langchain will call the function `get_similar_sessions` that behind the scenes connects to the database and excute the stored procedure `web.find_sessions` which perform vector search on database data.
+
+The RAG process is defined using Langchain's LCEL (Langchain Expression Language)[https://python.langchain.com/v0.1/docs/expression_language/] that can be easily extended to include more complex logic, even including complex agent actions with the aid of [LangGraph](https://langchain-ai.github.io/langgraph/), where the function calling the stored procedure will be a [tool](https://langchain-ai.github.io/langgraph/how-tos/tool-calling/?h=tool) available to the agent.
+
+
 ### Azure Functions (optional)
 
 TDB
