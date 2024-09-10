@@ -80,4 +80,14 @@ The RAG process is defined using Langchain's LCEL [Langchain Expression Language
 
 ### Azure Functions (optional)
 
-TDB
+In order to automate the process of generating the embeddings, you can use the Azure Functions. Thanks to [Azure SQL Trigger Binding](https://learn.microsoft.com/azure/azure-functions/functions-bindings-azure-sql-trigger), it is  possible to have tables monitored for changes and then react to those changes by executing some code in the Azure Function itself. As a result it is possible to automate the process of generating the embeddings and storing them in the database.
+
+In a perfect microservices architecture, the Azure Functions are written in C#, but you can easily create the same solutoin using Python, Node.js or any other supported language.
+
+The Azure Functions solution is in the `azure-functions` folder. Move into the folder, then create a `local.settings.json` starting from the provided `local.settings.json.example` file and fill it with your own values. Then run the Azure Functions locally (make sure to have the [Azure Function core tools](https://learn.microsoft.com/en-us/azure/azure-functions/functions-run-local) installed):
+
+```bash
+func start
+```
+
+the Azure Function will monitor the configured tables for changes and automatically call the Azure OpenAI endpoint to generate the embeddings for the new or updated data.
