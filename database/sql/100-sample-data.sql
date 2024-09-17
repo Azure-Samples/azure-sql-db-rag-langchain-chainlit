@@ -4,7 +4,7 @@ values
     (5000, 'John Doe', 0)
 go
 
-declare @t as nvarchar(max), @e as varbinary(8000)
+declare @t as nvarchar(max), @e as vector(1536)
 select @t = full_name from web.speakers where id = 5000
 exec web.get_embedding @t, @e output
 update web.speakers set embeddings = @e where id = 5000
@@ -24,7 +24,7 @@ values
     )
 go
 
-declare @t as nvarchar(max), @e as varbinary(8000)
+declare @t as nvarchar(max), @e as vector(1536)
 select @t = title + ':' + abstract from web.sessions where id = 1000
 exec web.get_embedding @t, @e output
 update web.sessions set embeddings = @e where id = 1000
@@ -50,7 +50,7 @@ values
     )
 go
 
-declare @t as nvarchar(max), @e as varbinary(8000)
+declare @t as nvarchar(max), @e as vector(1536)
 select @t = title + ':' + abstract from web.sessions where id = 1001
 exec web.get_embedding @t, @e output
 update web.sessions set embeddings = @e where id = 1001
@@ -77,10 +77,10 @@ values
     )
 go
 
-declare @t as nvarchar(max), @e as varbinary(8000)
-select @t = title + ':' + abstract from web.sessions where id = 1001
+declare @t as nvarchar(max), @e as vector(1536)
+select @t = title + ':' + abstract from web.sessions where id = 1002
 exec web.get_embedding @t, @e output
-update web.sessions set embeddings = @e where id = 1001
+update web.sessions set embeddings = @e where id = 1002
 go
 
 insert into web.sessions_speakers
