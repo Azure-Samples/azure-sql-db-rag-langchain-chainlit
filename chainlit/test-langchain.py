@@ -52,13 +52,13 @@ rag_chain = {"sessions": retriever, "question": RunnablePassthrough()} | prompt 
 # result = retriever.invoke("is there any sesison on SQL and AI?")
 # print(result)    
 
-#response = rag_chain.invoke("is there any sesison on SQL and AI?")
-#print(response.content)
+response = rag_chain.invoke("is there any sesison on SQL and AI?")
+print(response.content)
 
-print()
+# print()
 
-for chunk in rag_chain.stream("how do I learn how to bake bread"):
-    print(chunk.content,end="", flush=True)
+# for chunk in rag_chain.stream("how do I learn how to bake bread"):
+#     print(chunk.content,end="", flush=True)
 
-print()
+# print()
 

@@ -31,15 +31,16 @@ def get_similar_sessions(search_text:str) -> str:
     logging.info(f"Message content: '{search_text}'")
     try:        
         cursor = conn.cursor()            
-        results = cursor.execute("SET NOCOUNT ON; EXEC web.find_sessions @text=?", (search_text)).fetchall()
+        results = cursor.execute("SET NOCOUNT ON; EXEC dbo.find_pass_sessions @inputText=?", (search_text)).fetchall()
 
         logging.info(f"Found {len(results)} similar sessions.")
 
         payload = ""
         for row in results:
+            title = row[1]
             description = str(row[2]).replace("\n", " ")
-            speakers = ", ".join(json.loads(row[7]))    
-            payload += f'{row[1]}|{description}|{speakers}|{row[4]}|{row[5]}' 
+            speakers = ", ".join(json.loads(row[3]))    
+            payload += f'{title}|{description}|{speakers}' 
             payload += "\n"
     
         return payload    
