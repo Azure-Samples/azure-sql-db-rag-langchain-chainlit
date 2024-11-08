@@ -26,7 +26,7 @@ Make sure to have two models deployed, one for generating embeddings (*text-embe
 ### Database
 
 > [!NOTE]  
-> Vector Functions are in Early Adopter Preview. Get access to the preview via https://aka.ms/azuresql-vector-eap-announcement
+> Vector Functions are in Public Preview. Learn the details about vectors in Azure SQL here: https://aka.ms/azure-sql-vector-public-preview
 
 To deploy the database, you can either the provided .NET 8 Core console application or do it manually.
 
