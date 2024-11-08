@@ -49,9 +49,6 @@ retriever = RunnableLambda(get_similar_sessions).bind()
 
 rag_chain = {"sessions": retriever, "question": RunnablePassthrough()} | prompt | llm
 
-# result = retriever.invoke("is there any sesison on SQL and AI?")
-# print(result)    
-
 #response = rag_chain.invoke("is there any sesison on SQL and AI?")
 #print(response.content)
 
