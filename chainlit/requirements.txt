@@ -1,6 +1,14 @@
-chainlit
-langchain
-langchain_openai
 python-dotenv
+
 pyodbc
 azure-identity
+
+langchain 
+langchain-openai
+langchain-community 
+langchain-sqlserver
+langgraph
+
+chainlit
+
+

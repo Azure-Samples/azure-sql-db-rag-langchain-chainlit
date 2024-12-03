@@ -56,12 +56,12 @@ async def on_chat_start():
 async def on_message(message: cl.Message):
     runnable = cl.user_session.get("runnable")  # type: Runnable
     
-    msg = cl.Message(content="")
+    response_message = cl.Message(content="")
 
     for chunk in await cl.make_async(runnable.stream)(
         input=message.content,
         config=RunnableConfig(callbacks=[cl.LangchainCallbackHandler()]),
     ):
-        await msg.stream_token(chunk)
+        await response_message.stream_token(chunk)
 
-    await msg.send()
+    await response_message.send()

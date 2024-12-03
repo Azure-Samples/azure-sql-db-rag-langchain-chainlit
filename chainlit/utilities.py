@@ -25,13 +25,18 @@ def get_mssql_connection(source_variable_name: str) -> pyodbc.Connection:
 
     return conn
 
-def get_similar_sessions(search_text:str) -> str:
+def get_similar_sessions(topic:str) -> str:
+    """
+    Use this function to get a list of sessions that are potentially relevant for the specified topic.
+    The sessions are provided in the format of `id|title|abstract|speakers|start-time|end-time`. 
+    
+    """
     conn = get_mssql_connection("AZURE_SQL_CONNECTION_STRING")
     logging.info("Querying MSSQL...")
-    logging.info(f"Message content: '{search_text}'")
+    logging.info(f"Topic: '{topic}'")
     try:        
         cursor = conn.cursor()            
-        results = cursor.execute("SET NOCOUNT ON; EXEC web.find_sessions @text=?", (search_text)).fetchall()
+        results = cursor.execute("SET NOCOUNT ON; EXEC web.find_sessions @text=?", (topic)).fetchall()
 
         logging.info(f"Found {len(results)} similar sessions.")
 
@@ -39,7 +44,7 @@ def get_similar_sessions(search_text:str) -> str:
         for row in results:
             description = str(row[2]).replace("\n", " ")
             speakers = ", ".join(json.loads(row[7]))    
-            payload += f'{row[1]}|{description}|{speakers}|{row[4]}|{row[5]}' 
+            payload += f'{row[0]}|{row[1]}|{description}|{speakers}|{row[4]}|{row[5]}' 
             payload += "\n"
     
         return payload    
@@ -47,4 +52,6 @@ def get_similar_sessions(search_text:str) -> str:
         cursor.close()    
 
 if __name__ == "__main__":
+    from dotenv import load_dotenv
+    load_dotenv()
     print(get_similar_sessions("SQL and AI"))
