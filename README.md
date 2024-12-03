@@ -1,6 +1,8 @@
-# Azure SQL DB, Langchain and Chainlit
+# Azure SQL DB, Langchain, LangGraph and Chainlit
 
 Sample RAG pattern using Azure SQL DB, Langchain and Chainlit as demonstrated in the [#RAGHack](https://github.com/microsoft/RAG_Hack) conference. Full details and video recording available here: [RAG on Azure SQL Server](https://github.com/microsoft/RAG_Hack/discussions/53).
+
+The sample is build using plain LangChain (`app.py`) or using LangGraph (`app-langgraph.py`) to define the RAG process. 
 
 ## Architecture
 
@@ -66,6 +68,14 @@ Then make sure to create a `.env` file in the `/chainlit` folder starting from t
 ```bash
 chainlit run app.py
 ```
+
+or 
+
+```bash
+chainlit run app-langgraph.py
+```
+
+if you want to use the LangGraph solution.
 
 Once the application is running, you'll be able to ask question about your data and get the answer from the Azure OpenAI model. For example you can ask question on the data you have in the database:
 
