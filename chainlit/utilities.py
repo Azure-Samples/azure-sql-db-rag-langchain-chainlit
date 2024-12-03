@@ -27,6 +27,7 @@ def get_mssql_connection(source_variable_name: str) -> pyodbc.Connection:
 
 def get_similar_sessions(topic:str) -> str:
     """
+
     Use this function to get a list of sessions that are potentially relevant for the specified topic.
     The sessions are provided in the format of `id|title|abstract|speakers|start-time|end-time`. 
     
